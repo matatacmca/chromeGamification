@@ -315,10 +315,10 @@ body {font-family: Arial;}
 				$activity -> positive -> github -> typing = 3;
 				$activity -> positive -> github -> scroll = 0.1;
 				$activity -> negative -> youtube -> name = "youtube";
-				$activity -> negative -> youtube -> browse = 5;
-				$activity -> negative -> youtube -> click = 1;
-				$activity -> negative -> youtube -> typing = 3;
-				$activity -> negative -> youtube -> scroll = 0.1;
+				$activity -> negative -> youtube -> browse = -5;
+				$activity -> negative -> youtube -> click = -1;
+				$activity -> negative -> youtube -> typing = -3;
+				$activity -> negative -> youtube -> scroll = -0.1;
 			}
 			else
 			{
