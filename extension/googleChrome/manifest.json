@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "browser_action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon.png",
+        "32": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    }
+    },
+  "name": "chromeGamification",
+  "version": "0.0.0.0",
+  "description": "A gamification application developed for google chrome, designed to track productive/non-productive web activity",
+  
+  "content_security_policy": "script-src 'self' https://*.integrated-za.com; object-src 'self'",
+  
+  "content_scripts": [{
+    "js":["jquery.min.js", "content.js"],
+    "matches": ["*://*/*"]
+  }],
+  "permissions":[
+      "activeTab",
+      "tabs",
+      "http://*/*"
+      ]
+}

@@ -1,0 +1,4 @@
+Before logging a bug ensure that the following is done
+1. Change 'error_reporting(!E_WARNING);' to 'error_reporting(E_ALL);' in the relevant script
+2. Check if the issue has not been documented in the FAQ
+3. [Create a new issue](https://github.com/matatacmca/chromeGamification/issues)
