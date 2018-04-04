@@ -349,7 +349,7 @@ body {font-family: Arial;}
 			mkdir("game");
 			mkdir("game/badges");
 		}
-		echo "<script>window.alert('Instalation Completed Successfully');window.close();</script>"
+		echo "<script>window.alert('Instalation Completed Successfully');window.close();</script>";
 	}
 	else//get form Data
 	{
