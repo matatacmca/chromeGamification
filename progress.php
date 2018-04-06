@@ -171,8 +171,8 @@
 						$badgeID = $currentBadge;
 						$badgeDetails = $configBadges -> badges -> $badgeID;
 						
-						echo "<img src=\"$pageURL/../game/badges/" . $badgeDetails -> badgeImage . "\">";
-						echo "<h3>" . $badgeDetails -> badgeName . "</h3>";
+						echo "<img src=\"$pageURL/../game/badges/" . $badgeDetails -> badgeImage . "\"><br>";
+						echo "<span style=\"font-size:1.2em\"><strong>" . $badgeDetails -> badgeName . "</strong></span><br><br>";
 						echo "<span><strong>" . date("j M Y",$awardedDate) . "</strong><br>" . $badgeDetails -> description . "</span></div>";
 					}
 				}
