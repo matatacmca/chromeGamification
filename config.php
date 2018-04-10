@@ -204,11 +204,19 @@ td
 }
 		</style>
 		<script>
-function addMatchPattern()//function used to add match patterns  foe web activity
+function addMatchPattern(validation)//function used to add match patterns  foe web activity
 {
+	if(validation == "positive")
+	{
+		validate = "min=\"0\"";
+	}
+	else
+	{
+		validate = "max=\"0\"";
+	}
 	var blocks = document.getElementsByClassName('block');//the container that houses match patterns
 	var length = blocks.length;//determine the number of blocks
-	var newBlock = "<div class=\"block\"><h2>New Match Pattern</h2><input type=\"hidden\" name=\"" + length +"[new]\" value=\"true\"><label for=\"" + length +"[match]\">URL contains:</label><input type=\"text\" name=\"" + length +"[match]\" required>*<br><label for=\"" + length +"[browse]\">Points for browsing:</label><input required=\"\" title=\"intervals of 0.01\" type=\"number\" step=\"0.01\" name=\"" + length +"[browse]\" value=\"1\">*<br><label for=\"" + length +"[click]\">Points for clicking:</label><input required=\"\" title=\"intervals of 0.01\" type=\"number\" step=\"0.01\" name=\"" + length +"[click]\" value=\"1\">*<br><label for=\"" + length +"[typing]\">Points for typing:</label><input required=\"\" title=\"intervals of 0.01\" type=\"number\" step=\"0.01\" name=\"" + length +"[typing]\" value=\"1\">*<br><label for=\"" + length +"[scroll]\">Points for scrolling:</label><input required=\"\" title=\"intervals of 0.01\" type=\"number\" step=\"0.01\" name=\"" + length +"[scroll]\" value=\"0\">*<br></div>";//inner html of new block
+	var newBlock = "<div class=\"block\"><h2>New Match Pattern</h2><input type=\"hidden\" name=\"" + length +"[new]\" value=\"true\"><label for=\"" + length +"[match]\">URL contains:</label><input type=\"text\" name=\"" + length +"[match]\" required>*<br><label for=\"" + length +"[browse]\">Points for browsing:</label><input " + validate + " required=\"\" title=\"intervals of 0.01\" type=\"number\" step=\"0.01\" name=\"" + length +"[browse]\" value=\"1\">*<br><label for=\"" + length +"[click]\">Points for clicking:</label><input " + validate + " required=\"\" title=\"intervals of 0.01\" type=\"number\" step=\"0.01\" name=\"" + length +"[click]\" value=\"1\">*<br><label for=\"" + length +"[typing]\">Points for typing:</label><input " + validate + " required=\"\" title=\"intervals of 0.01\" type=\"number\" step=\"0.01\" name=\"" + length +"[typing]\" value=\"1\">*<br><label for=\"" + length +"[scroll]\">Points for scrolling:</label><input " + validate + " required=\"\" title=\"intervals of 0.01\" type=\"number\" step=\"0.01\" name=\"" + length +"[scroll]\" value=\"0\">*<br></div>";//inner html of new block
 	if(length == 0)//there are no match patterns saved, so a brand new block needs to be added
 	{
 		var parent = document.getElementsByTagName('form')[0].children[0];
@@ -1280,6 +1288,15 @@ window.location.href="config.php";
 						$activityType = $_GET["id"];
 						$activity = $activity -> $activityType;
 						$URLIndex = 0;
+						//add data validation
+						if($_GET["id"] == "positive")
+						{
+							$validation = "min=\"0\"";
+						}
+						else
+						{
+							$valitation = "max=\"0\"";
+						}
 						?>
 	<body>
 		<h1>Edit <?php echo $_GET["id"]; ?> activity scoring</h1>
@@ -1302,20 +1319,20 @@ window.location.href="config.php";
 						<label for="<?php echo $URLIndex; ?>[match]">URL contains:</label>
 						<input type="text" name="<?php echo $URLIndex; ?>[match]" value="<?php echo $match -> name; ?>"><br>
 						<label for="<?php echo $URLIndex; ?>[browse]">Points for browsing:</label>
-						<input required title="intervals of 0.01" type="number" step="0.01" name="<?php echo $URLIndex; ?>[browse]" value="<?php echo $match -> browse; ?>">*<br>
+						<input <?php echo $validation; ?> required title="intervals of 0.01" type="number" step="0.01" name="<?php echo $URLIndex; ?>[browse]" value="<?php echo $match -> browse; ?>">*<br>
 						<label for="<?php echo $URLIndex; ?>[click]">Points for clicking:</label>
-						<input required title="intervals of 0.01" type="number" step="0.01" name="<?php echo $URLIndex; ?>[click]" value="<?php echo $match -> click; ?>">*<br>
+						<input <?php echo $validation; ?> required title="intervals of 0.01" type="number" step="0.01" name="<?php echo $URLIndex; ?>[click]" value="<?php echo $match -> click; ?>">*<br>
 						<label for="<?php echo $URLIndex; ?>[typing]">Points for typing:</label>
-						<input required title="intervals of 0.01" type="number" step="0.01" name="<?php echo $URLIndex; ?>[typing]" value="<?php echo $match -> typing; ?>">*<br>
+						<input <?php echo $validation; ?> required title="intervals of 0.01" type="number" step="0.01" name="<?php echo $URLIndex; ?>[typing]" value="<?php echo $match -> typing; ?>">*<br>
 						<label for="<?php echo $URLIndex; ?>[scroll]">Points for scrolling:</label>
-						<input required title="intervals of 0.01" type="number" step="0.01" name="<?php echo $URLIndex; ?>[scroll]" value="<?php echo $match -> scroll; ?>">*<br>
+						<input <?php echo $validation; ?> required title="intervals of 0.01" type="number" step="0.01" name="<?php echo $URLIndex; ?>[scroll]" value="<?php echo $match -> scroll; ?>">*<br>
 					</div>
 						<?php
 						$URLIndex +=1;
 					}
 				?>
 				</div>
-				<div style="display:inline-block;" class="addButton" onClick="addMatchPattern();">Add New Match Pattern</div><br>
+				<div style="display:inline-block;" class="addButton" onClick="addMatchPattern('<?php echo $_GET["id"]; ?>');">Add New Match Pattern</div><br>
 				<div class="cancelButton" onClick="window.location.href='config.php';">Cancel</div><br>
 				<input type="submit" name="submit" class="saveButton" value="Save">
 			</form>
